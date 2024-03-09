@@ -1,0 +1,146 @@
+html {
+    background-color: bisque;
+}
+
+body {
+    margin: 0 auto;
+    margin-top: 1%;
+    width: 80vw;
+    min-height: 90%;
+}
+
+header {
+    width: 100%;
+    height: 11vh;
+    margin-bottom: 1%;
+    padding-top: 0.5%;
+    /*background-color:beige;*/
+}
+
+footer {
+    width: 100%;
+    height: 11vh;
+    margin-top: 1%;
+    padding-top: 0.5%;
+    font-size: 80%;
+    font-style: italic;
+    /*background-color:beige;*/
+}
+
+main {
+    padding-top: 2%;
+    width: 100%;
+    /*background-color: beige;*/
+    min-height: 70vh;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 120%;
+    padding-top: 3%;
+}
+
+header .headerText {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 80%;
+    font-style: italic;
+}
+
+header .headerTitle {
+    display: inline-block;
+    width: 100%;
+    font-size: 200%;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 0.5%
+}
+
+.greeting a {
+    display: inline-block;
+    width: 20%;
+    padding: 10px;
+    background-color: rgb(201, 252, 196);
+    font-weight: bold;
+}
+
+.profile a {
+    font-size: 80%;
+    margin-top: 10px;
+}
+
+.register {
+    font-size: 150%;
+    font-weight: bold;
+    margin: 0;
+}
+
+p.message {
+    color: red;
+}
+
+p.messageSuccess {
+    color: green;
+}
+
+.buttonAddTopic {
+    margin-top: 2%;
+    width: 15%;
+}
+
+.buttonAddTopic a {
+    text-decoration: none;
+}
+
+.topics {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+.tableTitle {
+    width: 16%;
+}
+
+.tableText {
+    width: 59%;
+}
+
+.topics .tableCountComments {
+    width: 9%;
+    text-align: center;
+}
+
+.topics .tableAuthor {
+    width: 8%;
+    text-align: center;
+}
+
+.topics .tableDate {
+    width: 8%;
+    text-align: center;
+}
+
+.topics .comm {
+    width: 60%;
+}
+
+.topics .commAuthor {
+    width: 20%;
+    text-align: center;
+}
+
+.topics .commDate {
+    width: 20%;
+    text-align: center;
+}
+
+textarea {
+    width: 30%;
+}
