@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -11,7 +14,7 @@
 <?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
+//session_start();
 if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?>
     <a href="content.php">⬅ Назад</a><br><br>
     <p class="register"><?=$_SESSION['log']?></p>
@@ -49,26 +52,15 @@ if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?
     }
     ?>
     </table>
-    <form action="" method="POST">
+    <form action="saveComment.php?id=<?=$topicId?>" method="POST">
     <span>Ваш коментар:</span>
     <input name="userComment">
-    <input type="submit" value="Відправити">
+    <button type="submit">Відправити</button>
     </form>
 <?php
-    if(!empty($_POST['userComment'])) {
-        $userComment = $_POST['userComment'];
-        $id = $_SESSION['id'];
-        $date = date('Y-m-d');
-        $query = "INSERT INTO comments SET comment='$userComment', user_id='$id', date='$date', topic_id='$topicId'";
-        $res = mysqli_query($link, $query);
-        if(!$res and MODE === 'dev') {
-            die(mysqli_error($link));
-        }
-        header("Location: ?id=$topicId");
-    }
-} /*else {
-    header('Location: index.php');
-}*/
+} else {
+    echo '<a href="index.php">Реєстрація/ідентифікація</a> ';
+}
 ?>
 
 </main>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -11,7 +14,7 @@
 <?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
+//session_start();
 ?>
 
 <?php
@@ -51,7 +54,7 @@ if($_SESSION['status'] === 'user') {
     echo '<a href="users.php">Повернутися до списку користувачів</a>';
 
 } else {
-    header('Location: index.php');
+    echo '<a href="index.php">Реєстрація/ідентифікація</a> ';
 }
 
 

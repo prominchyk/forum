@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -8,20 +11,20 @@
         <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
     </header>
 <main>
-<p class='register'>Авторизація: </p>
-<?php 
+<?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start(); ?>
 
-<form action="" method="POST">
-<p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
-<p>Ваш пароль: </p> <input name="password" type="password">
-<input type="submit" value="Відправити">
-</form>
+if(empty($_POST['login']) and empty($_POST['password'])) {?>
+    <p class='register'>Авторизація: </p>
+    <form action="" method="POST">
+    <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
+    <p>Ваш пароль: </p> <input name="password" type="password">
+    <input type="submit" value="Відправити">
+    </form>
 
 <?php
-if(!empty($_POST['login']) and !empty($_POST['password'])) {
+} else {
     $login = $_POST['login'];
     $password = $_POST['password'];
 
@@ -40,8 +43,14 @@ if(!empty($_POST['login']) and !empty($_POST['password'])) {
             $_SESSION['log'] = $login;
             $_SESSION['id'] = $user['id'];
             $_SESSION['status'] = $user['status'];
-            header('Location: content.php');
+            include 'content.php';
         } else {?>
+            <p class='register'>Авторизація: </p>
+            <form action="" method="POST">
+            <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
+            <p>Ваш пароль: </p> <input name="password" type="password">
+            <input type="submit" value="Відправити">
+            </form>
             <p class="message">Невірно введений логін чи пароль!</p>
             <?php
             $_SESSION['auth'] = null;
@@ -50,6 +59,12 @@ if(!empty($_POST['login']) and !empty($_POST['password'])) {
             $_SESSION['status'] = null;
         }
     } else {?>
+        <p class='register'>Авторизація: </p>
+        <form action="" method="POST">
+        <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
+        <p>Ваш пароль: </p> <input name="password" type="password">
+        <input type="submit" value="Відправити">
+        </form>
         <p class="message">Невірно введений логін чи пароль!</p>
         <?php
         $_SESSION['auth'] = null;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -8,11 +11,12 @@
         <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
     </header>
 <main>
+<a href="content.php">⬅ Назад</a><br><br>
 <p class='register'>Зміна пароля: </p>
 <?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
+//session_start();
 ?>
 
 <form action="" method="POST">
@@ -48,7 +52,7 @@ if($_SESSION['auth']) {
                     $query = "UPDATE users SET password='$newPasswordHash' WHERE id='$id'";
                     mysqli_query($link, $query);
                     echo '<p class="messageSuccess"><b>Пароль успішно змінений!</b></p> <br><br>';
-                    echo '<a href="content.php">Повернутися на сайт</a>';
+                   // echo '<a href="content.php">Повернутися на сайт</a>';
                 } else {
                     echo '<p class="message"><b>Невірно введений старий пароль!</b></p>';
                 }
@@ -62,7 +66,7 @@ if($_SESSION['auth']) {
         echo '<p class="message"><b>Не всі поля заповнені!</b></p>';
     }
 } else {
-    header('Location: index.php');
+    echo '<a href="index.php">Реєстрація/ідентифікація</a> ';
 }
 
 ?>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -11,7 +14,7 @@
 <?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
+//session_start();
 if(isset($_SESSION['id']) and isset($_SESSION['log'])) {?>
     <a href="content.php">⬅ Назад</a><br><br>
     <p class="register"><?=$_SESSION['log']?></p>
@@ -32,12 +35,14 @@ if(isset($_SESSION['id']) and isset($_SESSION['log'])) {?>
         if(!$res and MODE === 'dev') {
             die(mysqli_error($link));
         }
-        header('Location: content.php');
+        unset($_POST['titleTopic']);
+        unset($_POST['textTopic']);
+        echo "<p class=\"messageSuccess\"><b>Тема успішно додана!</b></p>";
         } else {
             echo '<p><b>Для створення теми заповніть поля вище.</b></p>';
         }
 } else {
-    header('Location: index.php');
+    echo '<a href="index.php">Реєстрація/ідентифікація</a> ';
 }
 
 ?>

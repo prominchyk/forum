@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">   
-</head>
-<body>
-    <header>
-        <span class='headerTitle'>Співзвуччя любові та мудрості</span>
-        <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
-    </header>
-<main>
 <?php
+session_start();
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
 if(isset($_SESSION['log'])) {
     if($_SESSION['status'] === 'user') {?>
     <div class="profile">
@@ -53,7 +43,8 @@ if(isset($_SESSION['log'])) {
             }
             $query2 = "SELECT COUNT(*) FROM comments WHERE topic_id=$topic[id] ORDER BY date";
             $res2 = mysqli_query($link, $query2);
-            for($data2 = []; $row2 = mysqli_fetch_assoc($res2)["COUNT(*)"]; $data2[] = $row2);
+            //for($data2 = []; $row2 = mysqli_fetch_assoc($res2)["COUNT(*)"]; $data2[] = $row2);
+            $data2 = mysqli_fetch_assoc($res2)["COUNT(*)"];
             for($i = 0; $i < count($data); $i++) { 
                 if($data2[$i] > 0) {
                     echo "<tr><td class=\"tableTitle\"><a href=\"contentTopic.php?id=$topic[id]\">$topic[title]</a></td><td class=\"tableText\">$topic[text]</td><td class=\"tableCountComments\">$data2[$i]</td><td class=\"tableAuthor\">$topic[author]</td><td class=\"tableDate\">$topic[date]</td></tr>";
@@ -69,12 +60,21 @@ if(isset($_SESSION['log'])) {
 
  <?php
  } else {
-    header('Location: index.php');
+    echo '<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">   
+    </head>
+    <body>
+        <header>
+            <span class="headerTitle">Співзвуччя любові та мудрості</span>
+            <span class="headerText">Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
+        </header>
+    <main>
+    <a href="index.php">Реєстрація/ідентифікація</a>  
+    </main>
+    <footer>
+        Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
+    </footer>
+    </body>';
 }
 ?>
-
-</main>
-<footer>
-    Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
-</footer>
-</body>

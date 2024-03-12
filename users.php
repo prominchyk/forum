@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -12,7 +15,7 @@
 <?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-session_start();
+//session_start();
 if(!empty($_SESSION['auth']) and $_SESSION['status'] === 'admin') {
     $query = "SELECT * FROM users";
     $res = mysqli_query($link, $query);
@@ -33,7 +36,7 @@ if(!empty($_SESSION['auth']) and $_SESSION['status'] === 'admin') {
     }
     echo '</table>';
 } else {
-    header('Location: content.php');
+    echo '<a href="index.php">Реєстрація/ідентифікація</a> ';
 }
 ?>
 
