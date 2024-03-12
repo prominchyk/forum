@@ -1,21 +1,10 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">   
-</head>
-<body>
-    <header>
-        <span class='headerTitle'>Співзвуччя любові та мудрості</span>
-        <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
-    </header>
-<main>
-<?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 
 if(empty($_POST['login']) and empty($_POST['password'])) {?>
+    <a href="index.php">⬅ Назад</a><br><br>
     <p class='register'>Авторизація: </p>
     <form action="" method="POST">
     <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
@@ -45,6 +34,7 @@ if(empty($_POST['login']) and empty($_POST['password'])) {?>
             $_SESSION['status'] = $user['status'];
             include 'content.php';
         } else {?>
+            <a href="index.php">⬅ Назад</a><br><br>
             <p class='register'>Авторизація: </p>
             <form action="" method="POST">
             <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
@@ -59,6 +49,7 @@ if(empty($_POST['login']) and empty($_POST['password'])) {?>
             $_SESSION['status'] = null;
         }
     } else {?>
+        <a href="index.php">⬅ Назад</a><br><br>
         <p class='register'>Авторизація: </p>
         <form action="" method="POST">
         <p>Ваш логін: </p> <input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
@@ -76,8 +67,3 @@ if(empty($_POST['login']) and empty($_POST['password'])) {?>
 
 
 ?>
-</main>
-<footer>
-    Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
-</footer>
-</body>

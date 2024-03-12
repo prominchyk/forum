@@ -1,23 +1,11 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">   
-</head>
-<body>
-    <header>
-        <span class='headerTitle'>Співзвуччя любові та мудрості</span>
-        <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
-    </header>
-<main>
-<?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-//session_start();
 
 if(empty($_POST)) {
-echo '<p class="register">Реєстрація: </p>
+echo '<a href="index.php">⬅ Назад</a><br><br>
+<p class="register">Реєстрація: </p>
 <form action="" method="POST">
    <p>Ваш логін: </p> <input name="login">
    <p>Ваш пароль: </p> <input name="password" type="password">
@@ -50,6 +38,7 @@ if(preg_match($validLogin, $_POST['login']) and preg_match($validPassword, $_POS
             //header('Location: content.php');
             include 'content.php';
         } else {?>
+            <a href="index.php">⬅ Назад</a><br><br>
             <p class="register">Реєстрація: </p>
             <form action="" method="POST">
             <p>Ваш логін: </p>
@@ -61,6 +50,7 @@ if(preg_match($validLogin, $_POST['login']) and preg_match($validPassword, $_POS
             <p class="message"><b>Вказаний логін вже зайнятий, виберіть, будь-ласка, інший.</b></p>
        <?php }
     } else {?>
+        <a href="index.php">⬅ Назад</a><br><br>
         <p class="register">Реєстрація: </p>
         <form action="" method="POST">
         <p>Ваш логін: </p><input name="login" value="<?php if(isset($_POST['login'])) echo ($_POST['login']); ?>">
@@ -73,6 +63,7 @@ if(preg_match($validLogin, $_POST['login']) and preg_match($validPassword, $_POS
    <?php }
 
 } else {?>
+    <a href="index.php">⬅ Назад</a><br><br>
     <p class="register">Реєстрація: </p>
     <form action="" method="POST">
     <p>Ваш логін: </p>
@@ -92,9 +83,3 @@ if(preg_match($validLogin, $_POST['login']) and preg_match($validPassword, $_POS
 }
 
 ?>
-
-</main>
-<footer>
-    Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
-</footer>
-</body>

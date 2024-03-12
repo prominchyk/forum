@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['id'])) {
+    header("Location: content.php");
+} else {?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">   
@@ -18,10 +23,8 @@
     </footer>
 </body>
 <?php
-    echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-    error_reporting(E_ALL);
-    ini_set('display-errors', 'on');
-    mb_internal_encoding('UTF-8');
-
-
-?>
+}
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
+error_reporting(E_ALL);
+ini_set('display-errors', 'on');
+mb_internal_encoding('UTF-8');?>

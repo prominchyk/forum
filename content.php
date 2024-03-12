@@ -1,5 +1,17 @@
 <?php
 session_start();
+?>
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">   
+</head>
+<body>
+    <header>
+        <span class='headerTitle'>Співзвуччя любові та мудрості</span>
+        <span class='headerText'>Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
+    </header>
+<main>
+<?php
 include 'db.php';
 echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 if(isset($_SESSION['log'])) {
@@ -22,7 +34,7 @@ if(isset($_SESSION['log'])) {
     <?php
     }?>
 
-    <button class="buttonAddTopic"><a href="addTopic.php">Додати тему</a></button>
+    <a class="addTopic" href="addTopic.php">Додати тему</a>
 
     <table class="topics">
         <tr>
@@ -60,21 +72,11 @@ if(isset($_SESSION['log'])) {
 
  <?php
  } else {
-    echo '<!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">   
-    </head>
-    <body>
-        <header>
-            <span class="headerTitle">Співзвуччя любові та мудрості</span>
-            <span class="headerText">Форум однодумців - приєднуйтесь до екологічного спілкування, додавайте свої теми</span>
-        </header>
-    <main>
-    <a href="index.php">Реєстрація/ідентифікація</a>  
-    </main>
-    <footer>
-        Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
-    </footer>
-    </body>';
+    echo '<a href="index.php">Реєстрація/ідентифікація</a>';  
 }
 ?>
+</main>
+<footer>
+    Даний сайт створений для толерантного спілкування людей на теми, які збільшують кількість радості, гармонії, мудрості, освіченості, позитиву. <br>Адміністрація сайту залишає за собою право без попередження видаляти коментарі та теми, які не відповідають даним принципам.
+</footer>
+</body>

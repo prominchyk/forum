@@ -84,13 +84,17 @@ p.messageSuccess {
     color: green;
 }
 
-.buttonAddTopic {
+.addTopic {
+    display: inline-block;
     margin-top: 2%;
     width: 15%;
-}
-
-.buttonAddTopic a {
     text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: darkgrey;
+    font-size: 100%;
+    text-align: center;
+    border: 1px solid black;
 }
 
 .topics {
