@@ -38,7 +38,7 @@ if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?
     $query = "SELECT comments.comment, users.login as author, comments.date
              FROM comments
              LEFT JOIN users ON users.id = comments.user_id
-             WHERE topic_id = '$topicId'";
+             WHERE topic_id = '$topicId' ORDER BY comments.date";
     $res = mysqli_query($link, $query);
     if(!$res and MODE === 'dev') {
         die(mysqli_error($link));

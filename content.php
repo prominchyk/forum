@@ -53,13 +53,12 @@ if(isset($_SESSION['log'])) {
             if(!isset($topic['author'])) {
                 $topic['author'] = '<i>deleted user</i>';
             }
-            $query2 = "SELECT COUNT(*) FROM comments WHERE topic_id=$topic[id] ORDER BY date";
+            $query2 = "SELECT COUNT(*) FROM comments WHERE topic_id=$topic[id]";
             $res2 = mysqli_query($link, $query2);
-            //for($data2 = []; $row2 = mysqli_fetch_assoc($res2)["COUNT(*)"]; $data2[] = $row2);
             $data2 = mysqli_fetch_assoc($res2)["COUNT(*)"];
             for($i = 0; $i < count($data); $i++) { 
-                if($data2[$i] > 0) {
-                    echo "<tr><td class=\"tableTitle\"><a href=\"contentTopic.php?id=$topic[id]\">$topic[title]</a></td><td class=\"tableText\">$topic[text]</td><td class=\"tableCountComments\">$data2[$i]</td><td class=\"tableAuthor\">$topic[author]</td><td class=\"tableDate\">$topic[date]</td></tr>";
+                if ((int)$data2 > 0) {
+                    echo "<tr><td class=\"tableTitle\"><a href=\"contentTopic.php?id=$topic[id]\">$topic[title]</a></td><td class=\"tableText\">$topic[text]</td><td class=\"tableCountComments\">$data2</td><td class=\"tableAuthor\">$topic[author]</td><td class=\"tableDate\">$topic[date]</td></tr>";
                     break;
                 } else {
                     echo "<tr><td class=\"tableTitle\"><a href=\"contentTopic.php?id=$topic[id]\">$topic[title]</a></td><td class=\"tableText\">$topic[text]</td><td class=\"tableCountComments\">0</td><td class=\"tableAuthor\">$topic[author]</td><td class=\"tableDate\">$topic[date]</td></tr>";
