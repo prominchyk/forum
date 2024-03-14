@@ -35,7 +35,7 @@ if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?
     <th>Коментар</th><th>Автор</th><th>Дата створення</th>
     </tr>
     <?php
-    $query = "SELECT comments.comment, users.login as author, comments.date
+    $query = "SELECT comments.comment, comments.userImg, users.login as author, comments.date
              FROM comments
              LEFT JOIN users ON users.id = comments.user_id
              WHERE topic_id = '$topicId' ORDER BY comments.date";
@@ -48,13 +48,24 @@ if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?
         if(!isset($comm['author'])) {
             $comm['author'] = '<i>deleted user</i>';
         }
-        echo "<tr><td class=\"comm\">$comm[comment]</td><td class=\"commAuthor\">$comm[author]</td><td class=\"commDate\">$comm[date]</td></tr>";
+        if(!empty($comm['comment']) and !empty($comm['userImg'])) {
+            echo "<tr><td class=\"comm\"><p>$comm[comment]</p><a href=\"$comm[userImg]\" target=\"_blank\"><img class=\"userImg\" src=\"$comm[userImg]\"></a></td><td class=\"commAuthor\">$comm[author]</td><td class=\"commDate\">$comm[date]</td></tr>";
+           // echo "<tr><td><a href=\"$comm[userImg]\" target=\"_blank\"><img class=\"userImg\" src=\"$comm[userImg]\"></a></td><td class=\"commAuthor\">$comm[author]</td><td class=\"commDate\">$comm[date]</td></tr>";
+        } 
+        elseif (!empty($comm['userImg']) and empty($comm['comment'])) {
+            echo "<tr><td><a href=\"$comm[userImg]\" target=\"_blank\"><img class=\"userImg\" src=\"$comm[userImg]\"></a></td><td class=\"commAuthor\">$comm[author]</td><td class=\"commDate\">$comm[date]</td></tr>";
+        }
+        elseif(!empty($comm['comment']) and empty($comm['userImg'])) {
+            echo "<tr><td class=\"comm\">$comm[comment]</td><td class=\"commAuthor\">$comm[author]</td><td class=\"commDate\">$comm[date]</td></tr>";
+        } 
     }
     ?>
     </table>
     <form action="saveComment.php?id=<?=$topicId?>" method="POST">
     <span>Ваш коментар:</span>
     <input name="userComment">
+    <span>Додати картинку (вкажіть її URL-адресу):</span>
+    <input name="userImg"><br><br>
     <button type="submit">Відправити</button>
     </form>
 <?php

@@ -148,3 +148,8 @@ th, td {
 textarea {
     width: 30%;
 }
+
+img.userImg {
+    max-height: 250px;
+    border: 1px solid black;
+}

@@ -29,14 +29,16 @@ if(isset($_SESSION['id']) and isset($_SESSION['log'])) {?>
         $titleTopic = $_POST['titleTopic'];
         $textTopic = $_POST['textTopic'];
         $date = date('Y-m-d');
+        $titleTopicChecked = preg_replace('#\'#', '’', $titleTopic);
+        $textTopicChecked = preg_replace('#\'#', '’', $textTopic);
     
-        $query = "INSERT INTO forum_topics SET title='$titleTopic', text='$textTopic', user_id='$id', date='$date'";
+        $query = "INSERT INTO forum_topics SET title='$titleTopicChecked', text='$textTopicChecked', user_id='$id', date='$date'";
         $res = mysqli_query($link, $query);
         if(!$res and MODE === 'dev') {
             die(mysqli_error($link));
         }
-        unset($_POST['titleTopic']);
-        unset($_POST['textTopic']);
+        unset($_POST['titleTopicChecked']);
+        unset($_POST['textTopicChecked']);
         echo "<p class=\"messageSuccess\"><b>Тема успішно додана!</b></p>";
         } else {
             echo '<p><b>Для створення теми заповніть поля вище.</b></p>';
