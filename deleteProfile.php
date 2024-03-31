@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'db.php';
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 ?>
 <!DOCTYPE html>
 <head>
@@ -12,17 +14,11 @@ session_start();
     </header>
 <main>
 <?php
-include 'db.php';
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-//session_start();
-?>
-
-<?php
 if($_SESSION['status'] === 'user') {
     echo "<form action='' method=\"POST\">
     <p>Для видалення профілю <b>$_SESSION[log]</b> введіть пароль: </p> <input name=\"password\" type=\"password\">
      <input type=\"submit\" value=\"Відправити\">
- </form>";
+    </form>";
     if(!empty($_POST)) {
         $id = $_SESSION['id'];
         $query = "SELECT * FROM users WHERE id='$id'";

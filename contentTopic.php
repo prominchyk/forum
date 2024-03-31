@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'db.php';
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 ?>
 <!DOCTYPE html>
 <head>
@@ -12,9 +14,6 @@ session_start();
     </header>
 <main>
 <?php
-include 'db.php';
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-//session_start();
 if(isset($_SESSION['id']) and isset($_SESSION['log']) and isset($_GET['id'])) {?>
     <a href="content.php">⬅ Назад</a><br><br>
     <p class="register"><?=$_SESSION['log']?></p>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'db.php';
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 ?>
 <!DOCTYPE html>
 <head>
@@ -12,8 +14,6 @@ session_start();
     </header>
 <main>
 <?php
-include 'db.php';
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 if(isset($_SESSION['log'])) {
     if($_SESSION['status'] === 'user') {?>
     <div class="profile">

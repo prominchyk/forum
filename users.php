@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'db.php';
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 ?>
 <!DOCTYPE html>
 <head>
@@ -13,9 +15,6 @@ session_start();
 <main>
 <a href="content.php">⬅ Назад</a><br>
 <?php
-include 'db.php';
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-//session_start();
 if(!empty($_SESSION['auth']) and $_SESSION['status'] === 'admin') {
     $query = "SELECT * FROM users";
     $res = mysqli_query($link, $query);

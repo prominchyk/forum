@@ -1,5 +1,8 @@
 <?php
 session_start();
+include 'db.php';
+require_once 'classes/User.php';
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
 ?>
 <!DOCTYPE html>
 <head>
@@ -13,12 +16,6 @@ session_start();
 <main>
 <a href="content.php">⬅ Назад</a><br><br>
 <p class='register'>Зміна пароля: </p>
-<?php
-include 'db.php';
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-//session_start();
-?>
-
 <form action="" method="POST">
    <p>Старий пароль: </p> <input name="old_password" type="password">
    <p>Новий пароль: </p> <input name="new_password" type="password">
@@ -31,9 +28,8 @@ if($_SESSION['auth']) {
     if(!empty($_POST['old_password']) and !empty($_POST['new_password']) and !empty($_POST['new_password_confirm'])) {
         $newPassword = $_POST['new_password'];
         $newPasswordConfirm = $_POST['new_password_confirm'];
-        $validPassword = '#^\w{6,12}$#';
 
-        if(preg_match($validPassword, $newPassword)) {
+        if(User::checkPassword($newPassword)) {
             if($newPassword === $newPasswordConfirm) {
                 $id = $_SESSION['id'];
                 $query = "SELECT * FROM users WHERE id='$id'";
@@ -52,7 +48,6 @@ if($_SESSION['auth']) {
                     $query = "UPDATE users SET password='$newPasswordHash' WHERE id='$id'";
                     mysqli_query($link, $query);
                     echo '<p class="messageSuccess"><b>Пароль успішно змінений!</b></p> <br><br>';
-                   // echo '<a href="content.php">Повернутися на сайт</a>';
                 } else {
                     echo '<p class="message"><b>Невірно введений старий пароль!</b></p>';
                 }

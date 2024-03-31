@@ -1,5 +1,17 @@
 html {
-    background-color: bisque;
+    background-image: linear-gradient(
+  45deg,
+  hsl(0deg 0% 100%) 0%,
+  hsl(56deg 100% 92%) 10%,
+  hsl(56deg 100% 83%) 25%,
+  hsl(57deg 100% 68%) 35%,
+  hsl(58deg 73% 61%) 50%,
+  hsl(63deg 33% 59%) 60%,
+  hsl(192deg 10% 50%) 70%,
+  hsl(212deg 74% 35%) 90%,
+  hsl(218deg 72% 33%) 100%
+);
+
 }
 
 body {
@@ -82,6 +94,9 @@ p.message {
 
 p.messageSuccess {
     color: green;
+    background-color: rgb(217, 247, 172);
+    width: 30%;
+    font-size: 130%;
 }
 
 .addTopic {
