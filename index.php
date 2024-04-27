@@ -1,9 +1,5 @@
 <?php
 session_start();
-echo '<link href="styles.css" rel="stylesheet" type="text/css">';
-error_reporting(E_ALL);
-ini_set('display-errors', 'on');
-mb_internal_encoding('UTF-8');
 
 if(isset($_SESSION['id'])) {
     header("Location: content.php");
@@ -29,4 +25,8 @@ if(isset($_SESSION['id'])) {
 </body>
 <?php
 }
+echo '<link href="styles.css" rel="stylesheet" type="text/css">';
+error_reporting(E_ALL);
+ini_set('display-errors', 'on');
+mb_internal_encoding('UTF-8');
 ?>
